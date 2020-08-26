@@ -1,0 +1,87 @@
+{
+    "name": "local-air",
+    "version": "1.0.0",
+    "description": "",
+    "main": "bin/main.js",
+    "scripts": {
+        "build": "rm -rf build && babel bin --out-dir ./dist --source-maps",
+        "dev": "nodemon --exec babel-node ./bin/main.js",
+        "start": "node ./dist/main.js",
+        "start-pm2": "pm2 start npm --name local-air -- start",
+        "stop-pm2": "pm2 stop local-air",
+        "restart-pm2": "pm2 restart local-air"
+    },
+    "keywords": [
+        "air quality",
+        "node"
+    ],
+    "author": "Dave Schumaker <dave@dave.ly> (https://dave.ly)",
+    "license": "MIT",
+    "babel": {
+        "presets": [
+            [
+                "@babel/preset-env",
+                {
+                    "targets": {
+                        "node": "10"
+                    }
+                }
+            ]
+        ],
+        "plugins": [
+            "@babel/plugin-transform-regenerator",
+            [
+                "module-resolver",
+                {
+                    "alias": {
+                        "~": ".",
+                        "bin": "./bin"
+                    }
+                }
+            ]
+        ]
+    },
+    "mocha": {
+        "require": [
+            "@babel/register",
+            "chai/register-expect"
+        ]
+    },
+    "prettier": {
+        "arrowParens": "avoid",
+        "bracketSpacing": true,
+        "printWidth": 100,
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 4,
+        "trailingComma": "none"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    },
+    "devDependencies": {
+        "@babel/cli": "7.10.5",
+        "@babel/core": "7.11.4",
+        "@babel/node": "7.10.5",
+        "@babel/plugin-transform-regenerator": "7.10.4",
+        "@babel/preset-env": "7.11.0",
+        "@babel/register": "7.10.5",
+        "babel-plugin-module-resolver": "4.0.0",
+        "chai": "4.2.0",
+        "husky": "4.2.5",
+        "nodemon": "2.0.4",
+        "prettier": "2.1.1",
+        "pretty-quick": "3.0.0"
+    },
+    "dependencies": {
+        "core-js": "3.6.5",
+        "cron": "1.8.2",
+        "koa": "2.13.0",
+        "node-fetch": "2.6.0",
+        "node-localstorage": "2.1.6",
+        "nodemailer": "6.4.11",
+        "regenerator-runtime": "0.13.7"
+    }
+}
