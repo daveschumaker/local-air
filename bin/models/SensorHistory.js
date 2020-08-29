@@ -7,7 +7,7 @@ const HISTORY_TO_KEEP = 24;
 
 const addHistory = pm25Value => {
     const currentTime = Date.now();
-    history.unshift([currentTime, pm25Value]);
+    history.unshift({ timestamp: currentTime, value: pm25Value });
     history = history.slice(0, HISTORY_TO_KEEP);
     dataStoreController.writeData('history', history);
 };

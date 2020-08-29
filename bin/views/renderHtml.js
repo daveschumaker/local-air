@@ -46,12 +46,16 @@ const getDetails = value => {
 const renderHtmlView = sensorData => {
     const date = new Date(sensorData.fetchTime);
 
-    const measurementData = SensorHistory.getHistory().map((measurent = []) => {
-        const dateMeasure = new Date(measurent[0]);
+    const measurementData = SensorHistory.getHistory().map((measurement = {}) => {
+        if (!measurement.timestamp || !measurement.value) {
+            return null;
+        }
+
+        const dateMeasure = new Date(measurement.timestamp);
         return `
                 <div class="recentRow">
-                    <span class="recentTime">${dateMeasure.toLocaleTimeString()}:</span>
-                    <span class="recentMeasurement">${measurent[1]}</span>
+                    <div class="recentTime">${dateMeasure.toLocaleTimeString()}:</div>
+                    <div class="recentMeasurement">${measurement.value}</div>
                 </div>
             `;
     });
@@ -152,12 +156,17 @@ const renderHtmlView = sensorData => {
             text-align: left !important;
         }
 
+        .recentRow {
+            font-family: "Courier New", Courier, monospace;
+        }
+
         .recentTime {
-            width: 200px;
+            display: inline-block;
+            width: 150px;
         }
 
         .recentMeasurement {
-            padding-left: 8px;
+            display: inline-block;
             width: 50px;
         }
       </style>

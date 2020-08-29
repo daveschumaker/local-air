@@ -53,8 +53,19 @@ const sendEmailAlert = () => {
     const NOTIFICATION_TIMEOUT_SECS = 3600; // Only send alert emails once an hour.
     const currentTime = currentTimeSecs();
     const historicalValues = SensorHistory.getHistory();
-    const shouldSendAlert =
-        historicalValues[0] >= AQI_THRESHOLD && historicalValues[1] < AQI_THRESHOLD;
+
+    if (!historicalValues[0] || historicalValues[1]) {
+        return;
+    }
+
+    const lastAqiValue = historicalValues[0].value;
+    const prevAqiValue = historicalValues[1].value;
+
+    if (!lastAqiValue || !prevAqiValue) {
+        return;
+    }
+
+    const shouldSendAlert = lastAqiValue >= AQI_THRESHOLD && prevAqiValue < AQI_THRESHOLD;
 
     if (
         shouldSendAlert &&
@@ -63,7 +74,7 @@ const sendEmailAlert = () => {
     ) {
         lastEmailNotificationTime = currentTime;
         notificationController.send({
-            body: `AQI is ${historicalValues[0]}. You should close your windows now.`
+            body: `AQI is ${lastAqiValue}. You should close your windows now.`
         });
     }
 };
