@@ -62,26 +62,26 @@
         }
     },
     "devDependencies": {
-        "@babel/cli": "7.10.5",
-        "@babel/core": "7.11.4",
-        "@babel/node": "7.10.5",
-        "@babel/plugin-transform-regenerator": "7.10.4",
-        "@babel/preset-env": "7.11.0",
-        "@babel/register": "7.10.5",
-        "babel-plugin-module-resolver": "4.0.0",
+        "@babel/cli": "7.12.10",
+        "@babel/core": "7.12.10",
+        "@babel/node": "7.12.10",
+        "@babel/plugin-transform-regenerator": "7.12.1",
+        "@babel/preset-env": "7.12.11",
+        "@babel/register": "7.12.10",
+        "babel-plugin-module-resolver": "4.1.0",
         "chai": "4.2.0",
-        "husky": "4.2.5",
-        "nodemon": "2.0.4",
-        "prettier": "2.1.1",
-        "pretty-quick": "3.0.0"
+        "husky": "4.3.6",
+        "nodemon": "2.0.6",
+        "prettier": "2.2.1",
+        "pretty-quick": "3.1.0"
     },
     "dependencies": {
-        "core-js": "3.6.5",
+        "core-js": "3.8.1",
         "cron": "1.8.2",
         "koa": "2.13.0",
         "node-fetch": "2.6.1",
         "node-localstorage": "2.1.6",
-        "nodemailer": "6.4.11",
+        "nodemailer": "6.4.17",
         "regenerator-runtime": "0.13.7"
     }
 }
