@@ -19,7 +19,10 @@ const getCachedData = () => {
 const writeSensorData = sensorData => {
     const currentTime = currentTimeSecs();
 
-    if (!sensorData) {
+    // sensorData can sometimes be 0 (hey, good air quality!)
+    // if so, we still want to record that,
+    // so don't use a "!sensorData" check.
+    if (typeof sensorData === 'undefined' || sensorData === null) {
         return;
     }
 
